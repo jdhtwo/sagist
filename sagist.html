@@ -48,7 +48,7 @@
 
 
     <div id="userInput">
-    Pizza! : <input type="textbox" placeholder="Enter how many slices of mushroom you will eat"></input>
+    Pizza! : <input class="mushrooms" type="textbox" placeholder="Enter how many slices of mushroom you will eat"></input>
     <button id="submit">Submit</button>
     </div>
 
@@ -61,7 +61,7 @@
     		data.addColumn('string', 'Topping');
        		 data.addColumn('number', 'Slices');
        		 data.addRows([
-	          ['Mushrooms', $('input:textbox')],
+	          ['Mushrooms', parseInt($(".mushrooms").val())],
 	          ['Onions', 1],
 	          ['Olives', 1],
 	          ['Zucchini', 1],
