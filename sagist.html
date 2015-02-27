@@ -48,12 +48,19 @@
 
 
     <div id="userInput">
-    Pizza! : <input class="mushrooms" type="textbox" placeholder="Enter how many slices of mushroom you will eat"></input>
+    Pizza! : <input id="mushroomsBox" class="mushrooms" type="textbox" placeholder="Enter how many slices of mushroom you will eat"></input>
     <button id="submit">Submit</button>
     </div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript">
+    
+    $(document).ready(function(){
+      $('#mushroomBox').keypress(function(e){
+        if(e.keyCode==13)
+        $('#submit').click();
+      });
+      });
     	
     	$("button#submit").click(function() {
 
