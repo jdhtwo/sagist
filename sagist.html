@@ -46,42 +46,52 @@
     <!--Div that will hold the pie chart-->
     <div id="chart_div"></div>
 
-
     <div id="userInput">
     Pizza! : <input id="mushroomsBox" class="mushrooms" type="textbox" placeholder="Enter how many slices of mushroom you will eat"></input>
     <button id="submit">Submit</button>
     </div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript">
+
+  <script type="text/javascript">
     
     $(document).ready(function(){
       $('#mushroomsBox').keypress(function(e){
         if(e.keyCode==13)
         $('#submit').click();
-      });
-      });
-    	
-    	$("button#submit").click(function() {
-
-    		var data = new google.visualization.DataTable();
-    		data.addColumn('string', 'Topping');
-       		 data.addColumn('number', 'Slices');
-       		 data.addRows([
-	          ['Mushrooms', parseInt($(".mushrooms").val())],
-	          ['Onions', 1],
-	          ['Olives', 1],
-	          ['Zucchini', 1],
-	          ['Pepperoni', 2]
-	        ]); 
-
-			var options = {'title':'How Much Pizza I Ate Last Night',
-                   'width':400,
-                   'height':300};
-    		var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-    		chart.draw(data, options);
-    		
-       		});
+    });
+    });
+    $("button#submit").click(function() {
+        var inp = $('#mushroomsBox').val();
+        var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+        if(jQuery.trim(inp).length == 0) {
+          var errMsgBlank
+          errMsgBlank = "Cannot be blank. Please enter a number.";
+          alert(errMsgBlank);
+        } 
+        else if(!(numberRegex.test(inp))) {
+          var errMsgNum
+          errMsgNum = "Must be a number. Please enter a number.";
+          alert(errMsgNum);
+        }
+        else if((jQuery.trim(inp).length > 0) && (numberRegex.test(inp))) {
+          var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+            ['Mushrooms', parseInt($(".mushrooms").val())],
+            ['Onions', 1],
+            ['Olives', 1],
+            ['Zucchini', 1],
+            ['Pepperoni', 2]
+            ]); 
+          var options = {'title':'How Much Pizza I Ate Last Night',
+            'width':400,
+            'height':300};
+          var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+        }
+        });
 
 	</script>
 
